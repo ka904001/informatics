@@ -1,27 +1,18 @@
 #include <ctime>
 #include <iostream>
-#include <vector>
 #include <limits>
+#include <vector>
 using namespace std;
 
 int main() {
-  //char n = '7';
   string str;
-  cout<<"Enter value in range [2, 5]"<<endl;
-  //cin.ignore(2, istream::eofbit);
-  cin>>str;
-  //cin.clear();
+  cout << "Enter value in range [2, 5]" << endl;
+  cin >> str;
   cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
-  //cin.ignore(1, istream::eofbit);
-  while (!((int)str[0] >= 50 && (int)str[0] <= 53&&str.length()==1)) {
+  while (!((int)str[0] >= 50 && (int)str[0] <= 53 && str.length() == 1)) {
     cout << "Invalid input, try again" << endl;
-    //cin.ignore(2, istream::eofbit);
-    cin>>str;
-    //cin.get(n);
+    cin >> str;
     cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
-    //cin.clear();
-    //cin.ignore(256);
-    //cin.ignore(1, istream::eofbit);
   }
   string a[5][5];
   string temp = "0000";
@@ -30,9 +21,7 @@ int main() {
   for (int i = 0; i < (int)str[0] - 48; i++) {
     for (int k = 0; k < (int)str[0] - 48; k++) {
       for (int j = 0; j < 4; j++) {
-        // cout<<"check"<<endl;
         temp[j] = (char)(65 + rand() % 26);
-        // cout<<temp<<' ';
       }
       a[i][k] = temp;
       cout << a[i][k] << ' ';
