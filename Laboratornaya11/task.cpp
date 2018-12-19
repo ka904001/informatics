@@ -17,8 +17,9 @@ int main() {
   }
   string a[5][5];
   srand(time(0));
-  for (int i = 0; i < (int)str[0] - 48; i++) {
-    for (int k = 0; k < (int)str[0] - 48; k++) {
+  int m = (int)str[0] - 48;
+  for (int i = 0; i < m; i++) {
+    for (int k = 0; k < m; k++) {
       for (int j = 0; j < 4; j++) {
         a[i][k][j] = (char)(65 + rand() % 26);
         cout<<a[i][k][j];
@@ -28,18 +29,18 @@ int main() {
     cout << endl;
   }
   int mas[25]{0};
-  for (int i = 0; i < (int)str[0] - 48; i++) {
-    for (int k = 0; k < (int)str[0] - 48; k++) {
+  for (int i = 0; i < m; i++) {
+    for (int k = 0; k < m; k++) {
       int result = 0;
       for (int j = 0; j < 4; j++) {
         if (a[i][k][j] == 'A' || a[i][k][j] == 'E' || a[i][k][j] == 'I' ||
             a[i][k][j] == 'O' || a[i][k][j] == 'U')
           result++;
       }
-      mas[i * ((int)str[0] - 48) + k] = result;
+      mas[i * (m) + k] = result;
     }
   }
-  for (int i = 0; i < ((int)str[0] - 48) * ((int)str[0] - 48); i++) {
+  for (int i = 0; i < (m) * (m); i++) {
     cout << mas[i] << ' ';
   }
   return 0;
