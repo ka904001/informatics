@@ -16,7 +16,6 @@ int main() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
   }
   char a[5][5][4];
-  string temp = "0000";
   srand(time(0));
   for (int i = 0; i < (int)str[0] - 48; i++) {
     for (int k = 0; k < (int)str[0] - 48; k++) {
