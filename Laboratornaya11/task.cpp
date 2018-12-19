@@ -1,6 +1,7 @@
 #include <ctime>
 #include <iostream>
 #include <limits>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -8,23 +9,22 @@ int main() {
   string str;
   cout << "Enter value in range [2, 5]" << endl;
   cin >> str;
-  cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
   while (!((int)str[0] >= 50 && (int)str[0] <= 53 && str.length() == 1)) {
     cout << "Invalid input, try again" << endl;
     cin >> str;
-    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
   }
   string a[5][5];
   string temp = "0000";
   srand(time(0));
-  // cout<<"check"<<endl;
   for (int i = 0; i < (int)str[0] - 48; i++) {
     for (int k = 0; k < (int)str[0] - 48; k++) {
       for (int j = 0; j < 4; j++) {
-        temp[j] = (char)(65 + rand() % 26);
+        a[i][k][j] = (char)(65 + rand() % 26);
+        cout<<a[i][k][j];
       }
-      a[i][k] = temp;
-      cout << a[i][k] << ' ';
+      cout<<' ';
     }
     cout << endl;
   }
@@ -33,8 +33,8 @@ int main() {
     for (int k = 0; k < (int)str[0] - 48; k++) {
       int result = 0;
       for (int j = 0; j < 4; j++) {
-        if (a[i][j][k] == 'A' || a[i][j][k] == 'E' || a[i][j][k] == 'I' ||
-            a[i][j][k] == 'O' || a[i][j][k] == 'U')
+        if (a[i][k][j] == 'A' || a[i][k][j] == 'E' || a[i][k][j] == 'I' ||
+            a[i][k][j] == 'O' || a[i][k][j] == 'U')
           result++;
       }
       mas[i * ((int)str[0] - 48) + k] = result;
