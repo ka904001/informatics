@@ -7,8 +7,8 @@ using namespace std;
 
 void checking(string &str, int size, int start, int end) {
   cin >> str;
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  for (int i = 0; i < size; i++) {
+  cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очистка входящего потока
+  for (int i = 0; i < size; i++) {//проверка всех букв на соответсвие заданнум критериям
     while (
         !((int)str[i] >= start && (int)str[i] <= end && str.length() == size)) {
       cout << "Invalid input, try again" << endl;
@@ -40,17 +40,17 @@ int main() {
   cout << "If you wish to type in values manually, type 1, if not, type 2"
        << endl;
   checking(str1, 1, 49, 50);
-  string a[5][5];
-  m = (int)str[0] - 48;
+  string a[5][5];//Объявление массива(болшего размера он быть не может)
+  m = (int)str[0] - 48;//получение размера массива
   if (str1 == "1") {
     string str2;
     for (int i = 0; i < m; i++) {
       for (int k = 0; k < m; k++) {
-        checking(str2, 4, 65, 90);
+        checking(str2, 4, 65, 90);//проверка ввода
         a[i][k] = str2;
       }
     }
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < m; i++) {//вывод массива
       for (int k = 0; k < m; k++) {
         cout<<a[i][k]<<' ';
       }
@@ -61,7 +61,7 @@ int main() {
     for (int i = 0; i < m; i++) {
       for (int k = 0; k < m; k++) {
         for (int j = 0; j < 4; j++) {
-          a[i][k][j] = (char)(65 + rand() % 26);
+          a[i][k][j] = (char)(65 + rand() % 26);//Добавление случайного символа
           cout << a[i][k][j];
         }
         cout << ' ';
@@ -69,24 +69,24 @@ int main() {
       cout << endl;
     }
   }
-  int mas[25]{0};
+  int mas[25]{0};//Из условий задачи массив не может быть больше 25
   for (int i = 0; i < m; i++) {
     for (int k = 0; k < m; k++) {
       int result = 0;
-      for (int j = 0; j < 4; j++) {
+      for (int j = 0; j < 4; j++) {//поиск гдасных
         if (a[i][k][j] == 'A' || a[i][k][j] == 'E' || a[i][k][j] == 'I' ||
             a[i][k][j] == 'O' || a[i][k][j] == 'U')
           result++;
       }
-      mas[i * m + k] = result;
+      mas[i * m + k] = result;//запись в массив
     }
   }
-  for (int i = 0; i < m * m; i++) {
+  for (int i = 0; i < m * m; i++) {//вывод массива
     cout << mas[i] << ' ';
   }
   cout<<endl;
-  sortingg(mas, 0, m*m);
-  for (int i = 0; i < m * m; i++) {
+  sortingg(mas, 0, m*m);//сортировка
+  for (int i = 0; i < m * m; i++) {//вывод отсортированного массива
     cout << mas[i] << ' ';
   }
   return 0;
