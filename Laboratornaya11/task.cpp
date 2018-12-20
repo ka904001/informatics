@@ -19,6 +19,19 @@ void checking(string &str, int size, int start, int end) {
   }
 };
 
+void sortingg(int a[], int start, int end){
+  int min = 0;
+  for(int i = start; i < end; i++){
+    min = i;
+    for(int k = i; k < end; k++){
+      if(a[k] < a[min]){min = k;}
+    }
+    int tmp = a[min];
+    a[min] = a[i];
+    a[i] = tmp;
+  }
+}
+
 int main() {
   string str, str1;
   int m = 0;
@@ -28,9 +41,9 @@ int main() {
        << endl;
   checking(str1, 1, 49, 50);
   string a[5][5];
+  m = (int)str[0] - 48;
   if (str1 == "1") {
     string str2;
-    m = (int)str[0] - 48;
     for (int i = 0; i < m; i++) {
       for (int k = 0; k < m; k++) {
         checking(str2, 4, 65, 90);
@@ -45,7 +58,6 @@ int main() {
     }
   } else {
     srand(time(0));
-    m = (int)str[0] - 48;
     for (int i = 0; i < m; i++) {
       for (int k = 0; k < m; k++) {
         for (int j = 0; j < 4; j++) {
@@ -69,6 +81,11 @@ int main() {
       mas[i * m + k] = result;
     }
   }
+  for (int i = 0; i < m * m; i++) {
+    cout << mas[i] << ' ';
+  }
+  cout<<endl;
+  sortingg(mas, 0, m*m);
   for (int i = 0; i < m * m; i++) {
     cout << mas[i] << ' ';
   }
