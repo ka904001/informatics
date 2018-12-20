@@ -8,7 +8,7 @@ using namespace std;
 void checking(string &str, int size, int start, int end) {
   cin >> str;
   cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очистка входящего потока
-  for (int i = 0; i < size; i++) {//проверка всех букв на соответсвие заданнум критериям
+  for (int i = 0; i < size; i++) {//проверка всех букв на соответсвие заданным критериям
     while (
         !((int)str[i] >= start && (int)str[i] <= end && str.length() == size)) {
       cout << "Invalid input, try again" << endl;
@@ -40,7 +40,7 @@ int main() {
   cout << "If you wish to type in values manually, type 1, if not, type 2"
        << endl;
   checking(str1, 1, 49, 50);
-  string a[5][5];//Объявление массива(болшего размера он быть не может)
+  string a[5][5];//Объявление массива (большего размера он быть не может)
   m = (int)str[0] - 48;//получение размера массива
   if (str1 == "1") {
     string str2;
@@ -73,7 +73,7 @@ int main() {
   for (int i = 0; i < m; i++) {
     for (int k = 0; k < m; k++) {
       int result = 0;
-      for (int j = 0; j < 4; j++) {//поиск гдасных
+      for (int j = 0; j < 4; j++) {//поиск гласных
         if (a[i][k][j] == 'A' || a[i][k][j] == 'E' || a[i][k][j] == 'I' ||
             a[i][k][j] == 'O' || a[i][k][j] == 'U')
           result++;
