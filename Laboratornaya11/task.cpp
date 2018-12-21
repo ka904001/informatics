@@ -5,12 +5,16 @@
 #include <vector>
 using namespace std;
 
-void checking(string &str, int size, int start, int end) {
+void checking(string &str, int size, int start, int end, int start2, int end2) {
   cin >> str;
-  cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очистка входящего потока
-  for (int i = 0; i < size; i++) {//проверка всех букв на соответсвие заданным критериям
+  cin.ignore(numeric_limits<streamsize>::max(),
+             '\n'); // Очистка входящего потока
+  for (int i = 0; i < size;
+       i++) { //проверка всех букв на соответсвие заданным критериям
     while (
-        !((int)str[i] >= start && (int)str[i] <= end && str.length() == size)) {
+        !((int)str[i] >= start && (int)str[i] <= end && str.length() == size) &&
+        !((int)str[i] >= start2 && (int)str[i] <= end2 &&
+          str.length() == size)) {
       cout << "Invalid input, try again" << endl;
       cin >> str;
       i = 0;
@@ -19,12 +23,14 @@ void checking(string &str, int size, int start, int end) {
   }
 };
 
-void sortingg(int a[], int start, int end){
+void sortingg(int a[], int start, int end) {
   int min = 0;
-  for(int i = start; i < end; i++){
+  for (int i = start; i < end; i++) {
     min = i;
-    for(int k = i; k < end; k++){
-      if(a[k] < a[min]){min = k;}
+    for (int k = i; k < end; k++) {
+      if (a[k] < a[min]) {
+        min = k;
+      }
     }
     int tmp = a[min];
     a[min] = a[i];
@@ -36,32 +42,36 @@ int main() {
   string str, str1;
   int m = 0;
   cout << "Enter value in range [2, 5]" << endl;
-  checking(str, 1, 50, 53);
+  checking(str, 1, 50, 53, 0, 0);
   cout << "If you wish to type in values manually, type 1, if not, type 2"
        << endl;
-  checking(str1, 1, 49, 50);
-  string a[5][5];//Объявление массива (большего размера он быть не может)
-  m = (int)str[0] - 48;//получение размера массива
+  checking(str1, 1, 49, 50, 0, 0);
+  string a[5][5]; //Объявление массива (большего размера он быть не может)
+  m = (int)str[0] - 48; //получение размера массива
   if (str1 == "1") {
     string str2;
     for (int i = 0; i < m; i++) {
       for (int k = 0; k < m; k++) {
-        checking(str2, 4, 65, 90);//проверка ввода
+        cout << "Type in the element of " << i << " row " << k
+             << " column. Elements are vritten 4 letters wide!!!"
+             << endl;
+        // cout<<m*m -(i+1)(k+1)<<" Remains"<<endl
+        checking(str2, 4, 65, 90, 97, 122); //проверка ввода
         a[i][k] = str2;
       }
     }
-    for (int i = 0; i < m; i++) {//вывод массива
+    for (int i = 0; i < m; i++) { //вывод массива
       for (int k = 0; k < m; k++) {
-        cout<<a[i][k]<<' ';
+        cout << a[i][k] << ' ';
       }
-      cout<<endl;
+      cout << endl;
     }
   } else {
     srand(time(0));
     for (int i = 0; i < m; i++) {
       for (int k = 0; k < m; k++) {
         for (int j = 0; j < 4; j++) {
-          a[i][k][j] = (char)(65 + rand() % 26);//Добавление случайного символа
+          a[i][k][j] = (char)(65 + rand() % 26); //Добавление случайного символа
           cout << a[i][k][j];
         }
         cout << ' ';
@@ -69,24 +79,26 @@ int main() {
       cout << endl;
     }
   }
-  int mas[25]{0};//Из условий задачи массив не может быть больше 25
+  int mas[25]{0}; //Из условий задачи массив не может быть больше 25
   for (int i = 0; i < m; i++) {
     for (int k = 0; k < m; k++) {
       int result = 0;
-      for (int j = 0; j < 4; j++) {//поиск гласных
+      for (int j = 0; j < 4; j++) { //поиск гласных
         if (a[i][k][j] == 'A' || a[i][k][j] == 'E' || a[i][k][j] == 'I' ||
-            a[i][k][j] == 'O' || a[i][k][j] == 'U')
+            a[i][k][j] == 'O' || a[i][k][j] == 'U' || a[i][k][j] == 'a' ||
+            a[i][k][j] == 'e' || a[i][k][j] == 'i' || a[i][k][j] == 'o' ||
+            a[i][k][j] == 'u')
           result++;
       }
-      mas[i * m + k] = result;//запись в массив
+      mas[i * m + k] = result; //запись в массив
     }
   }
-  for (int i = 0; i < m * m; i++) {//вывод массива
+  for (int i = 0; i < m * m; i++) { //вывод массива
     cout << mas[i] << ' ';
   }
-  cout<<endl;
-  sortingg(mas, 0, m*m);//сортировка
-  for (int i = 0; i < m * m; i++) {//вывод отсортированного массива
+  cout << endl;
+  sortingg(mas, 0, m * m); //сортировка
+  for (int i = 0; i < m * m; i++) { //вывод отсортированного массива
     cout << mas[i] << ' ';
   }
   return 0;
